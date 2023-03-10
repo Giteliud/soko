@@ -1,26 +1,63 @@
 import { useNavigation } from "@react-navigation/native";
+import { Component, useState } from "react";
+import { Alert } from "react-native";
+import { TextInput } from "react-native";
 import { Image, SafeAreaView } from "react-native";
 import { ScrollView } from "react-native";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 
+
+// class func extends Component{
+//   constructor(props){
+//     super(props);
+
+//     this.state={
+//       value: 0
+//     }
+//   }
+
+//   addition = () =>{
+//     let initialValue = this.state.value;
+//     this.setState({
+//       value: initialValue + 1
+//     })
+//   }
+
+//   subtraction = () =>{
+//     let initialValue = this.state.value;
+//     this.setState({
+//       value: initialValue - 1
+//     })
+//   }
+//   render(){
+    
+//   }
+// }
+
+
+
+
 const HomeScreen = () => {
+  const [value, setValue] = useState(1);  
   const navigation = useNavigation()
-  
+
   
   return ( 
     
       <View style={{flex:1, borderWidth:1}}>
 
-        <View style={{flex:0.5, borderWidth:1, flexDirection:'row', }}>
+        <View style={{flex:0.5,  flexDirection:'row', }}>
           <View style={{flex:1, borderWidth:1, justifyContent:'center', alignItems:'center'}}>
             <Text>Logo</Text>
           </View>
 
-          <View style={{flex:9, borderWidth:1, justifyContent:'space-between', flexDirection:'row', height:25, alignItems:'center', marginTop:6, marginLeft:4, padding:2}}>
-            <Text>Search Products</Text>
-            <Text>icon</Text>
+          <View style={{flex:9,   marginLeft:4, marginRight:2, marginTop:1 }}>
+            <TextInput 
+              style={{width:'100%', borderWidth:1, height:"100%", borderRadius:10}}
+              placeholder="Search Products"
+            />                  
           </View>
         </View>
 
@@ -77,7 +114,9 @@ const HomeScreen = () => {
               <Text>NEW PRODUCT</Text>
             </View>
             <View>
-              <Text style={{color:'red'}}>SEE ALL</Text>
+              <TouchableOpacity onPress={()=> navigation.navigate('Products')}>
+                <Text style={{color:'red'}}>SEE ALL</Text>
+              </TouchableOpacity>
             </View>
           </View>
 
@@ -134,7 +173,9 @@ const HomeScreen = () => {
             </View>
 
             <View>
-              <Text style={{color:'red'}}>SEE ALL</Text>
+              <TouchableOpacity onPress={()=> navigation.navigate('Products')}>
+                <Text style={{color:'red'}}>SEE ALL</Text>
+              </TouchableOpacity>
             </View>
           </View>
 
@@ -146,15 +187,23 @@ const HomeScreen = () => {
             </View>
 
             <View style={{borderWidth:1, flex:6, paddingLeft:10, justifyContent:'center'}}>
-              <Text style={{marginBottom:5}}>Ksh. 100</Text>
+              <Text style={{marginBottom:5}}>Total Ksh.{value * 100}</Text>
               <Text style={{marginBottom:5, fontSize: 18, fontWeight:"700"}}>Uncut Cabbage</Text>
-              <Text>Qty. 1</Text>
+              <Text>Qty. {value} </Text>
             </View>
 
             <View style={{borderWidth:1, flex:1, justifyContent:'space-between', alignItems:'center'}}>
-              <Text style={{fontSize:24, fontWeight:'900'}}>+</Text>
-              <Text style={{fontSize:24, fontWeight:'900'}}>1</Text>
-              <Text style={{fontSize:24, fontWeight:'900'}}>-</Text>
+              <TouchableOpacity onPress={()=> setValue(value + 1)} style={{backgroundColor:'#F8A300', width:30, height:30, borderRadius:20, marginTop:2, justifyContent:'center', alignItems:'center'}}>
+                <Text style={{fontSize:24, fontWeight:'900', color:'white'}}>+</Text>
+              </TouchableOpacity>
+
+              <Text style={{fontSize:24, fontWeight:'900'}}>{value}</Text>
+
+              <TouchableOpacity onPress={()=>value >1 ? setValue(value -1): Alert.alert('Cannot go below 1 item.')} style={{backgroundColor:'#F8A300', width:30, height:30, borderRadius:20, marginTop:2, justifyContent:'center', alignItems:'center'}}>
+                <Text style={{fontSize:24, fontWeight:'900', color:'white'}}>-</Text>
+              </TouchableOpacity>
+
+              
             </View>
           </View>
         </View>
@@ -175,6 +224,7 @@ const HomeScreen = () => {
     
   );
 }
+
 
 const styles = StyleSheet.create({
   screen: {
