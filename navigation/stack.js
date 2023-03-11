@@ -19,6 +19,8 @@ import GroceriesScreen from '../screens/groceries-screen';
 import ProductsScreen from '../screens/products-screen';
 import ForgotPasswordScreen from '../screens/forgotPassword-screen';
 import LandingPageScreen from '../screens/landingPage-screen';
+import OrderConfirmedScreen from '../screens/orderConfirmed-screen';
+import OrderDetailsScreen from '../screens/OrderDetails-screen';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +47,8 @@ export const HomeStack = () => {
       <Stack.Screen name="Products" component={ProductsScreen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
       <Stack.Screen name="LandingPage" component={LandingPageScreen} />
+      <Stack.Screen name="OrderConfirmed" component={OrderConfirmedScreen} />
+      <Stack.Screen name="OrderDetails" component={OrderDetailsScreen} />
     </Stack.Navigator>
   );
 }

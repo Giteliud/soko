@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View,TouchableOpacity } from "react-native";
 
 
 const CustomerProfileScreen = () => {
@@ -14,7 +14,9 @@ const CustomerProfileScreen = () => {
           </View>
 
           <View style={{ flex:4, justifyContent:'center'}}>
-            <Text style={{paddingLeft:8}}>My Orders</Text>
+            <TouchableOpacity onPress={()=> navigation.navigate('OrderDetails')} >
+              <Text style={{ fontSize:20, padding:10}}>My Orders</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={{ flex:2.5, flexDirection: 'row'}}>
